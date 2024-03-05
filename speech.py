@@ -52,6 +52,10 @@ def handle_commands():
             print("Assistant: Goodbye!")
             speak("Goodbye!")
             break
+
+        elif "how are you" in user_input.lower():
+            print("Assistant: I'm doing well, thank you for asking!")
+            speak("I'm doing well, thank you for asking!")
         else:
             print("Assistant: I'm still listening. Say something.")
             speak("I'm still listening. Say something.")
