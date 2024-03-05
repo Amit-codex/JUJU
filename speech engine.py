@@ -1,3 +1,4 @@
+from datetime import datetime
 import pyttsx3
 from decouple import config
 import speech_recognition as sr
@@ -26,8 +27,16 @@ def take_command():
     return query
 
 def greet_user():
-    speak(f"Hello {USERNAME}, I am {BOTNAME}. How can I assist you today?")
-
+    """Greets the user according to the time"""
+    hour = datetime.now().hour
+    if 6 <= hour < 12:
+        speak(f"Good Morning {USERNAME}")
+    elif 12 <= hour < 16:
+        speak(f"Good Afternoon {USERNAME}")
+    elif 16 <= hour < 19:
+        speak(f"Good Evening {USERNAME}")
+    speak(f"I am {BOTNAME}. How may I assist you?")
+    
 if __name__ == "__main__":
     engine = pyttsx3.init('sapi5')
     engine.setProperty('rate', 190)
