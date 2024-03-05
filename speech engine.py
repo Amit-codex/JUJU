@@ -43,7 +43,7 @@ def greet_user():
 
 if __name__ == "__main__":
     engine = pyttsx3.init('sapi5')
-    engine.setProperty('rate', 200)
+    engine.setProperty('rate', 300)
     engine.setProperty('volume', 2.0)
     voices = engine.getProperty('voices')
     engine.setProperty('voice', voices[1].id)
@@ -55,20 +55,14 @@ if __name__ == "__main__":
         
         # Add conditions for different commands or tasks
         if 'what is your name' in query:
-            speak("my name is {BOTNAME} you make me did you forgot that ?")
+            speak("my name is jasmine, you make me did you forgot that ?")
 
         if 'open whatsapp' in query:
             speak("Opening WhatsApp Web")
             webbrowser.open("https://web.whatsapp.com")
 
-        elif 'nothing' in query:
+        elif 'nothing' and 'stop listening' and 'i am done' in query:
             speak(f"Goodbye {USERNAME}. Have a great day!")
-            break
-        elif 'stop liatening' in query:
-            speak(f"understood {USERNAME}.!")
-            break
-        elif 'i am done' in query:
-            speak(f"okay {USERNAME}.")
             break
 
         speak(get_random_opening_text())
