@@ -1,7 +1,11 @@
 import speech_recognition as sr
+import pyttsx3
 
 # Initialize recognizer
 recognizer = sr.Recognizer()
+
+# Initialize pyttsx3 engine
+engine = pyttsx3.init()
 
 # Function to listen and recognize speech
 def listen():
@@ -32,6 +36,7 @@ def respond_to_wake_word(wake_word):
         user_input = listen()
         if check_wake_word(user_input, wake_word):
             print("Assistant: Yes, how can I help you?")
+            speak("Yes, how can I help you?")
             # Add your response logic here
             # For example, you can call another function to handle further commands
             handle_commands()
@@ -45,9 +50,16 @@ def handle_commands():
         # For example, you can process the user's input and perform actions accordingly
         if "stop" in user_input.lower():
             print("Assistant: Goodbye!")
+            speak("Goodbye!")
             break
         else:
             print("Assistant: I'm still listening. Say something.")
+            speak("I'm still listening. Say something.")
+
+# Function to speak
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
 
 # Call the function to respond to the wake word
 respond_to_wake_word("Jarvis")
