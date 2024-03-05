@@ -2,6 +2,7 @@ from datetime import datetime
 import pyttsx3
 from decouple import config
 import speech_recognition as sr
+from utils import get_random_opening_text
 
 USERNAME = config('USER')
 BOTNAME = config('BOTNAME')
@@ -36,7 +37,7 @@ def greet_user():
     elif 16 <= hour < 19:
         speak(f"Good Evening {USERNAME}")
     speak(f"I am {BOTNAME}. How may I assist you?")
-    
+
 if __name__ == "__main__":
     engine = pyttsx3.init('sapi5')
     engine.setProperty('rate', 190)
@@ -58,6 +59,9 @@ if __name__ == "__main__":
         
         # You can define other commands or tasks similarly
         
-        elif 'exit' in query:
+        elif 'nothing' in query:
             speak(f"Goodbye {USERNAME}. Have a great day!")
             break
+
+        speak(get_random_opening_text())
+        break  # Exit after speaking one random opening text
